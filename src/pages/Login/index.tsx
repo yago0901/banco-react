@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { SignJWT } from 'jose';
+import fakeUsersConfirmation from '../../components/Fakers/fakeUsers';
 import './styles.scss';
-import fakeUsersConfirmation from '../Fakers/fakeUsers';
 
 export interface IUserLogin {
   username: string;

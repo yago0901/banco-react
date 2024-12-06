@@ -9,6 +9,18 @@
   &__container {
     width: 90%;
     height: 80%;
-    background-color: green;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    &__logo {
+      width: auto;
+      max-height: 80%;
+    }
+
+    &__exit {
+      width: auto;
+      max-height: 50%;
+    }
   }
 }
