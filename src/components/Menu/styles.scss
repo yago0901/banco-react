@@ -19,8 +19,16 @@
     }
 
     &__exit {
-      width: auto;
-      max-height: 50%;
+      width: 60px;
+      height: 100%;
+      max-height: auto;
+      display: flex;
+      cursor: pointer;
+
+      img{
+        max-width: 30px;
+        color: linear-gradient(to top right, #FF0000, #F24D74);
+      }
     }
   }
 }

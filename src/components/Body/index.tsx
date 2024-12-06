@@ -32,11 +32,11 @@ const Body = () => {
               <div>CPF/CNPJ</div>
               <div>CPF/CNPJ</div>
             </div>
-            <div  className='body__container__history__items__item'>
+            <div className='body__container__history__items__item'>
               <div>Fornecido</div>
               <div>CPF/CNPJ</div>
             </div>
-            <div  className='body__container__history__items__item'>
+            <div className='body__container__history__items__item'>
               <div>Agência / Conta</div>
               <div>CPF/CNPJ</div>
             </div>
@@ -56,6 +56,11 @@ const Body = () => {
               <div>Data</div>
               <div>CPF/CNPJ</div>
             </div>
+          </div>
+          <div>
+            <button>
+              Nova Transação
+            </button>
           </div>
         </div>
       </div>
