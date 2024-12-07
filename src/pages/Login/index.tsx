@@ -2,13 +2,8 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { SignJWT } from 'jose';
 import fakeUsersConfirmation from '../../components/Fakers/fakeUsers';
+import { IUserLogin } from './types';
 import './styles.scss';
-
-export interface IUserLogin {
-  username: string;
-  password: string;
-  token: string;
-}
 
 const Login = () => {
   const [user, setUser] = useState<string>('');
@@ -34,7 +29,6 @@ const Login = () => {
     );
 
     if (foundUser) {
-      // Se o usuário for encontrado, gerar o token
       const token = await generateToken(user);
       const userObj: IUserLogin = { username: user, password: password, token };
       localStorage.setItem('user', JSON.stringify(userObj));

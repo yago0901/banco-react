@@ -1,7 +1,15 @@
 
+import fakeUser from '../Fakers/fakeUser';
+import History from '../History';
 import './styles.scss'
 
 const Body = () => {
+
+  const formattedValue = new Intl.NumberFormat('pt-BR', {
+    style: 'currency',
+    currency: 'BRL',
+  }).format(fakeUser.currentBalance);
+
   return (
     <div className='body'>
       <div className='body__container'>
@@ -10,59 +18,16 @@ const Body = () => {
             Bem vindo,
           </h1>
           <p>
-            João da Silva Lima
+            {fakeUser.name}
           </p>
           <p>
             Agência:16159-1 Conta: 59486-6
           </p>
           <p>
-            Saldo: R$ 1.000,00
+            Saldo: {formattedValue}
           </p>
         </div>
-        <div className='body__container__history'>
-          <h1>
-            Histórico
-          </h1>
-          <div className='body__container__history__items'>
-            <div className='body__container__history__items__item'>
-              <div>Seta</div>
-              <div>Seta</div>
-            </div>
-            <div className='body__container__history__items__item'>
-              <div>CPF/CNPJ</div>
-              <div>CPF/CNPJ</div>
-            </div>
-            <div className='body__container__history__items__item'>
-              <div>Fornecido</div>
-              <div>CPF/CNPJ</div>
-            </div>
-            <div className='body__container__history__items__item'>
-              <div>Agência / Conta</div>
-              <div>CPF/CNPJ</div>
-            </div>
-            <div className='body__container__history__items__item'>
-              <div>Chave Pix</div>
-              <div>CPF/CNPJ</div>
-            </div>
-            <div className='body__container__history__items__item'>
-              <div>Banco</div>
-              <div>CPF/CNPJ</div>
-            </div>
-            <div className='body__container__history__items__item'>
-              <div>Valor</div>
-              <div>CPF/CNPJ</div>
-            </div>
-            <div className='body__container__history__items__item'>
-              <div>Data</div>
-              <div>CPF/CNPJ</div>
-            </div>
-          </div>
-          <div>
-            <button>
-              Nova Transação
-            </button>
-          </div>
-        </div>
+        <History/>
       </div>
     </div>
   )

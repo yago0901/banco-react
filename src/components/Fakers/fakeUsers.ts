@@ -1,7 +1,7 @@
-import { IUserLogin } from '../Login';
+import { IUserLogin } from '../../pages/Login';
 
 //array para verificar se usuário está cadastrado
-const fakeUsersConfirmation: IUserLogin[] = [
+const fakeUsers: IUserLogin[] = [
   {
     username: "João Silva",
     password: "teste",
@@ -14,4 +14,4 @@ const fakeUsersConfirmation: IUserLogin[] = [
   }
 ];
 
-export default fakeUsersConfirmation;
+export default fakeUsers;

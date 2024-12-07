@@ -3,7 +3,13 @@
 interface Ihistory {
   id: number; 
   tipo: 'pix' | 'ted';
-  type: 'add' | 'remove',
+  chave: string;
+  action: 'add' | 'remove',
+  doc: number;
+  fornecido: string;
+  agencia: number;
+  conta: number;
+  banco: string;
   valor: number; 
   data: string; 
   description: string; 
@@ -13,7 +19,7 @@ interface IUser {
   id: number; 
   name: string; 
   currentBalance: number;
-  transitions: Ihistory[]; 
+  transitions: Ihistory[];
 }
 
 const fakeUser:IUser = {
@@ -24,7 +30,13 @@ const fakeUser:IUser = {
     {
       id: 1, 
       tipo: "pix",
-      type: "add",
+      chave: "teste@gmail.com",
+      action: "add",
+      doc:12345678910,
+      fornecido: "Carlos Alberto de Nobrega",
+      agencia: 2515,
+      conta: 351754,
+      banco: 'Magnus Bank',
       valor: 250.0, 
       data: "2024-12-01T12:00:00Z", 
       description: "Pagamento de fatura", 
@@ -32,7 +44,13 @@ const fakeUser:IUser = {
     {
       id: 2,
       tipo: "ted",
-      type: "add",
+      chave: "11998877665",
+      action: "add",
+      doc:12345678911,
+      fornecido: "Fernando Rochet de Almeida",
+      agencia: 1015,
+      conta: 354800,
+      banco: 'NuBank',
       valor: 150.0,
       data: "2024-12-02T14:30:00Z",
       description: "Compra no mercado",
@@ -40,7 +58,13 @@ const fakeUser:IUser = {
     {
       id: 3,
       tipo: "pix",
-      type: "remove",
+      chave: "11987654321",
+      action: "remove",
+      doc:12345678912,
+      fornecido: "Lais Vissogli Toledo",
+      agencia: 1312,
+      conta: 567891,
+      banco: 'Bradesco',
       valor: 500.0,
       data: "2024-12-03T09:00:00Z",
       description: "Depósito bancário",
