@@ -1,9 +1,13 @@
 
+import { useState } from 'react';
 import fakeUser from '../Fakers/fakeUser';
 import History from '../History';
 import './styles.scss'
+import Modal from '../Modal';
 
 const Body = () => {
+
+  const [modaIsOpen, setModalIsOpen] = useState<boolean>(false);
 
   const formattedValue = new Intl.NumberFormat('pt-BR', {
     style: 'currency',
@@ -12,6 +16,11 @@ const Body = () => {
 
   return (
     <div className='body'>
+      {modaIsOpen &&
+        <div onClick={() => setModalIsOpen(false)} className='body__backdrop'>
+          <Modal setModalIsOpen={setModalIsOpen}/>
+        </div>
+      }
       <div className='body__container'>
         <div className='body__container__user_data'>
           <h1>
@@ -27,7 +36,7 @@ const Body = () => {
             Saldo: {formattedValue}
           </p>
         </div>
-        <History/>
+        <History setModalIsOpen={setModalIsOpen}/>
       </div>
     </div>
   )

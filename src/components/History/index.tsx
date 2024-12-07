@@ -1,10 +1,11 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowDown, faArrowUp } from '@fortawesome/free-solid-svg-icons';
 import fakeUser from '../Fakers/fakeUser';
+import { IModal } from '../Modal/types';
 
 import './styles.scss'
 
-const History = () => {
+const History = ({setModalIsOpen}:IModal) => {
 
   const formatDate = (isoDate: string): string => {
     const date = new Date(isoDate);
@@ -22,10 +23,10 @@ const History = () => {
       </h1>
       <div className='history__items'>
         <div className='history__items__item'>
-          <div>
+          <div className='history__items__item__arrow'>
             {fakeUser.transitions[0].action === "add" ?
-              <FontAwesomeIcon icon={faArrowUp} /> :
-              <FontAwesomeIcon icon={faArrowDown} />}
+              <FontAwesomeIcon className='history__items__item__arrow__icon' icon={faArrowUp} /> :
+              <FontAwesomeIcon className='history__items__item__arrow__icon' icon={faArrowDown} />}
           </div>
         </div>
         <div className='history__items__item'>
@@ -58,7 +59,7 @@ const History = () => {
         </div>
       </div>
       <div className='history__items__button'>
-        <button>
+        <button onClick={() => setModalIsOpen(true)}>
           Nova Transação
         </button>
       </div>
