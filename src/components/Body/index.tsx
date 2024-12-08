@@ -2,8 +2,8 @@
 import { useState } from 'react';
 import fakeUser from '../Fakers/fakeUser';
 import History from '../History';
-import './styles.scss'
 import Modal from '../Modal';
+import './styles.scss'
 
 const Body = () => {
 
@@ -12,7 +12,7 @@ const Body = () => {
   const formattedValue = new Intl.NumberFormat('pt-BR', {
     style: 'currency',
     currency: 'BRL',
-  }).format(fakeUser.currentBalance);
+  }).format(fakeUser[0].currentBalance);
 
   return (
     <div className='body'>
@@ -27,7 +27,7 @@ const Body = () => {
             Bem vindo,
           </h1>
           <p>
-            {fakeUser.name}
+            {fakeUser[0].name}
           </p>
           <p>
             Agência:16159-1 Conta: 59486-6

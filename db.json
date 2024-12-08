@@ -1,0 +1,123 @@
+{
+  "user": [
+    {
+      "id": 1,
+      "username": "João Silva",
+      "password": "teste",
+      "currentBalance": 1000.5,
+      "token": "teste"
+    },
+    {
+      "id": 2,
+      "username": "admin",
+      "password": "admin",
+      "currentBalance": 900.5,
+      "token": "teste"
+    },
+    {
+      "id": 3,
+      "username": "teste1",
+      "password": "teste1",
+      "balance": 10,
+      "token": "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6InRlc3RlMSJ9.kFFkxoThSjD0NkwCOgGzTTcDZDVai20w-4L6tRiSqsk"
+    }
+  ],
+  "history": [
+    {
+      "id": 1,
+      "name": "João Silva",
+      "transitions": [
+        {
+          "id": 1,
+          "tipo": "pix",
+          "chave": "teste@gmail.com",
+          "action": "add",
+          "doc": 12345678910,
+          "fornecido": "Carlos Alberto de Nobrega",
+          "agencia": 2515,
+          "conta": 351754,
+          "banco": "Magnus Bank",
+          "valor": 250,
+          "data": "2024-12-01T12:00:00Z",
+          "description": "Pagamento de fatura"
+        },
+        {
+          "id": 2,
+          "tipo": "ted",
+          "chave": "11998877665",
+          "action": "add",
+          "doc": 12345678911,
+          "fornecido": "Fernando Rochet de Almeida",
+          "agencia": 1015,
+          "conta": 354800,
+          "banco": "NuBank",
+          "valor": 150,
+          "data": "2024-12-02T14:30:00Z",
+          "description": "Compra no mercado"
+        },
+        {
+          "id": 3,
+          "tipo": "pix",
+          "chave": "11987654321",
+          "action": "remove",
+          "doc": 12345678912,
+          "fornecido": "Lais Vissogli Toledo",
+          "agencia": 1312,
+          "conta": 567891,
+          "banco": "Bradesco",
+          "valor": 500,
+          "data": "2024-12-03T09:00:00Z",
+          "description": "Depósito bancário"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "admin",
+      "transitions": [
+        {
+          "id": 1,
+          "tipo": "pix",
+          "chave": "teste@gmail.com",
+          "action": "add",
+          "doc": 12345678910,
+          "fornecido": "Alberto Carlos da Silva",
+          "agencia": 2515,
+          "conta": 351754,
+          "banco": "Magnus Bank",
+          "valor": 220,
+          "data": "2024-12-01T12:00:00Z",
+          "description": "Pagamento de fatura"
+        },
+        {
+          "id": 2,
+          "tipo": "ted",
+          "chave": "11998877665",
+          "action": "add",
+          "doc": 12345678911,
+          "fornecido": "Fernanda Massov",
+          "agencia": 1015,
+          "conta": 354800,
+          "banco": "NuBank",
+          "valor": 90,
+          "data": "2024-12-02T14:30:00Z",
+          "description": "Compra no mercado"
+        },
+        {
+          "id": 3,
+          "tipo": "pix",
+          "chave": "11987654321",
+          "action": "remove",
+          "doc": 12345678912,
+          "fornecido": "Teles Toledo Tavares",
+          "agencia": 1312,
+          "conta": 567891,
+          "banco": "Bradesco",
+          "valor": 355,
+          "data": "2024-12-03T09:00:00Z",
+          "description": "Depósito bancário"
+        }
+      ]
+    }
+  ]
+}

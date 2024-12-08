@@ -1,5 +1,5 @@
-.login{
-  background: url('../../assets/fundo.jpg') no-repeat center center; 
+.login {
+  background: url("../../assets/fundo.jpg") no-repeat center center;
   background-size: cover;
   width: 100%;
   height: 100vh;
@@ -7,7 +7,7 @@
   justify-content: center;
   align-items: center;
 
-  &__container{
+  &__container {
     width: 60%;
     height: 73.24%;
     border-radius: 14px;
@@ -31,6 +31,78 @@
       align-items: center;
       justify-content: center;
       gap: 1rem;
+
+      &__content {
+        width: 50%;
+        height: 50%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+
+        &__login {
+          display: flex;
+          gap: 0.5rem;
+          align-items: center;
+          flex-direction: column;
+          width: 100%;
+          
+          input{
+            width: 100%;
+            min-height: 25px;
+          }
+        }
+
+        &__password {
+          display: flex;
+          gap: 0.5rem;
+          align-items: center;
+          flex-direction: column;
+          width: 100%;
+          
+          input{
+            width: 100%;
+            min-height: 25px;
+          }
+        }
+
+        h1 {
+          font-weight: bold;
+          font-size: 20px;
+          margin-bottom: 1rem;
+        }
+
+        &__login_button {
+          all: unset;
+          cursor: pointer;
+          margin-top: 1rem;
+          border: 4px solid #d9d9d9;
+          border-radius: 14px;
+          padding: 0.25rem 1.5rem;
+          transition: all 0.3s ease-in-out;
+
+          &:hover {
+            border-color: #ff0000;
+            background-color: #f3f3f3;
+            transform: scale(1.05);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+          }
+        }
+
+        &__actions {
+          display: flex;
+          justify-content: space-between;
+          width: 100%;
+          margin-top: 1rem;
+
+          button{
+            all: unset;
+            font-size: 14px;
+            cursor: pointer;
+          }
+        }
+      }
     }
   }
 }
