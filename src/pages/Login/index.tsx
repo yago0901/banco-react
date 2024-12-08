@@ -1,20 +1,10 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { IUserLogin } from './types';
+import { IRegister, IRegisterError, IUserLogin } from './types';
 import { useMutation, useQuery } from "react-query";
 import { fetchUsers, generateToken } from './util';
 import axios from 'axios';
 import './styles.scss';
-
-interface IRegister {
-  name: string,
-  password: string,
-  balance: number
-}
-
-interface IRegisterError {
-  message?: string;
-}
 
 const Login = () => {
   const [user, setUser] = useState<string>('');
@@ -30,12 +20,12 @@ const Login = () => {
   
   const { data: users, error, isLoading } = useQuery("usersData", fetchUsers)
   
-  let idUsers: number = 2;  
+  const idUsers: number = users.length +1;
   
   const { mutate: registerUser, isLoading: isRegistering, error: registerError } = useMutation(
-    async ({ name, password, balance }: IRegister) => {
-      const token = await generateToken(name);
-      const response = await axios.post('http://localhost:5000/user', { id: ++idUsers, username: name, password,balance: balance, token: token });
+    async ({ username, password, balance }: IRegister) => {
+      const token = await generateToken(username);
+      const response = await axios.post('http://localhost:5000/user', { id: idUsers, username: username, password,balance: balance, token: token });
       return response.data;
     },
     {
@@ -55,7 +45,7 @@ const Login = () => {
   const toLogin = async () => {
 
     const foundUser = users.find(
-      (u:IRegister) => u.name === user && u.password === password
+      (u:IRegister) => u.username === user && u.password === password
     );
 
     if (foundUser) {
@@ -63,7 +53,6 @@ const Login = () => {
       localStorage.setItem('user', JSON.stringify(userObj));
       navigate('/Home');
     } else {
-
       console.log('Usuário ou senha não fornecidos');
     }
   };

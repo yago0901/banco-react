@@ -1,7 +1,5 @@
 import axios from 'axios';
 import { SignJWT } from 'jose';
-//import { IRegister } from '.';
-
 
 export const generateToken = async (user: string) => {
   const secret = new TextEncoder().encode('mysecret');
@@ -10,7 +8,7 @@ export const generateToken = async (user: string) => {
   const token = await new SignJWT(payload)
   .setProtectedHeader({ alg: 'HS256' })
   .sign(secret);
-  
+    
   return token;
 };
 

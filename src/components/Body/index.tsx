@@ -1,18 +1,29 @@
-
 import { useState } from 'react';
-import fakeUser from '../Fakers/fakeUser';
 import History from '../History';
 import Modal from '../Modal';
+import { useQuery } from 'react-query';
+import { fetchUsers } from '../../pages/Login/util';
+import { IUser } from '../History/tipes';
 import './styles.scss'
 
 const Body = () => {
 
   const [modaIsOpen, setModalIsOpen] = useState<boolean>(false);
 
+  const { data: users, error, isLoading } = useQuery("usersData", fetchUsers)
+
+  const storedUser = JSON.parse(localStorage.getItem('user') || '{}');
+  const userId = storedUser.id;
+  
+  if (isLoading) return <div>Carregando saldo...</div>;
+  if (error) return <div>Ocorreu um erro: {error.message}</div>;
+
+  const userHistory = users?.find((user:IUser) => user.id === userId);
+
   const formattedValue = new Intl.NumberFormat('pt-BR', {
     style: 'currency',
     currency: 'BRL',
-  }).format(fakeUser[0].currentBalance);
+  }).format(userHistory.currentBalance);
 
   return (
     <div className='body'>
@@ -27,7 +38,7 @@ const Body = () => {
             Bem vindo,
           </h1>
           <p>
-            {fakeUser[0].name}
+            {userHistory.name}
           </p>
           <p>
             Agência:16159-1 Conta: 59486-6

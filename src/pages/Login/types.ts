@@ -10,3 +10,13 @@ export interface ICachLogin {
   password: string;
   token: string;
 }
+
+export interface IRegister {
+  username: string,
+  password: string,
+  balance: number
+}
+
+export interface IRegisterError {
+  message?: string;
+}

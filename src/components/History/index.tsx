@@ -1,30 +1,34 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowDown, faArrowUp } from '@fortawesome/free-solid-svg-icons';
-import fakeUser from '../Fakers/fakeUser';
 import { IModal } from '../Modal/types';
+import { useQuery } from "react-query";
+import { fetchHistory, formatDate } from './util';
+import { IHistory, IUser } from './tipes';
 
 import './styles.scss'
 
 const History = ({ setModalIsOpen }: IModal) => {
   
   const storedUser = JSON.parse(localStorage.getItem('user') || '{}');
-  const userId = storedUser?.id;
+  const userId = storedUser.id;
 
-  const formatDate = (isoDate: string): string => {
-    const date = new Date(isoDate);
-    const day = date.getDate().toString().padStart(2, '0');
-    const month = (date.getMonth() + 1).toString().padStart(2, '0');
-    const year = date.getFullYear();
+  const { data: history, error, isLoading } = useQuery("historyData", fetchHistory);
+  
+  if (isLoading) return <div>Carregando criação de usuário...</div>;
+  if (error) return <div>Ocorreu um erro: {error.message}</div>;
 
-    return `${day}/${month}/${year}`;
-  };
+  const userHistory = history?.find((user:IUser) => user.id === userId);
+  
+  if (!userHistory || !userHistory.transitions) {
+    return <div>Não há dados disponíveis para o usuário</div>;
+  }
 
   return (
     <div className='history'>
       <h1>
         Histórico
       </h1>
-      {fakeUser[userId -1].transitions.map((transition) => {
+      {userHistory.transitions.map((transition:IHistory) => {
         return (
           <div key={transition.id} className='history__items'>
             <div className='history__items__item'>
