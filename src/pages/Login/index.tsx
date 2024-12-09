@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { IRegister, IRegisterError, IUserLogin } from './types';
 import { useMutation, useQuery } from "react-query";
 import { fetchUsers, generateToken } from './util';
+import Banner from '../../assets/fundo-magnus-bank.jpg'
 import axios from 'axios';
 import './styles.scss';
 
@@ -20,7 +21,7 @@ const Login = () => {
   
   const { data: users, error, isLoading } = useQuery("usersData", fetchUsers)
   
-  const idUsers: number = users.length +1;
+  const idUsers: number = users ? users.length + 1 : 1;
   
   const { mutate: registerUser, isLoading: isRegistering, error: registerError } = useMutation(
     async ({ username, password, balance }: IRegister) => {
@@ -61,19 +62,19 @@ const Login = () => {
   if (registerError) return <div>Ocorreu um erro: {registerError.message}</div>;  
   
   if (isLoading) return <div>Carregando criação de usuário...</div>;
-  if (error) return <div>Ocorreu um erro: {error.message}</div>;  
+  if (error) return <div>Ocorreu um erro</div>;  
 
   return (
     <div className='login'>
       <div className='login__container'>
         <div className='login__container__left'>
-          parte de cima
+          <img src={Banner} alt="banner" />
         </div>
         <div className='login__container__right'>
           {registerOn ?
             <div className='login__container__right__content'>
               <h1 >Registre sua conta</h1>
-              {registerError && <p>Erro ao registrar: {registerError.message}</p>}
+              {registerError && <p>Erro ao registrar</p>}
               {isRegistering && <p>Registrando...</p>}
               <div className='login__container__right__content__login'>
                 <label>Nome</label>
@@ -103,7 +104,7 @@ const Login = () => {
                 />
               </div>
               <button className='login__container__right__content__login_button'
-                onClick={() => registerUser({ name: nameRegister, password: passwordRegister, balance: newBalance })}>
+                onClick={() => registerUser({ username: nameRegister, password: passwordRegister, balance: newBalance })}>
                 Registrar
               </button>
               <div className='login__container__right__content__actions'>

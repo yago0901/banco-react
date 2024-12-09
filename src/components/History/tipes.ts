@@ -1,10 +1,11 @@
 export interface IHistory {
   id: number; 
+  clientID: number;
   tipo: 'pix' | 'ted';
   chave: string;
   action: 'add' | 'remove',
   doc: number;
-  fornecido: string;
+  favorecido: string;
   agencia: number;
   conta: number;
   banco: string;

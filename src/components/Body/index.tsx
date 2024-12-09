@@ -14,11 +14,11 @@ const Body = () => {
 
   const storedUser = JSON.parse(localStorage.getItem('user') || '{}');
   const userId = storedUser.id;
-  
-  if (isLoading) return <div>Carregando saldo...</div>;
-  if (error) return <div>Ocorreu um erro: {error.message}</div>;
 
-  const userHistory = users?.find((user:IUser) => user.id === userId);
+  if (isLoading) return <div>Carregando saldo...</div>;
+  if (error) return <div>Carregando saldo...</div>;
+
+  const userHistory = users?.find((user: IUser) => user.id === userId);
 
   const formattedValue = new Intl.NumberFormat('pt-BR', {
     style: 'currency',
@@ -29,7 +29,7 @@ const Body = () => {
     <div className='body'>
       {modaIsOpen &&
         <div onClick={() => setModalIsOpen(false)} className='body__backdrop'>
-          <Modal setModalIsOpen={setModalIsOpen}/>
+          <Modal setModalIsOpen={setModalIsOpen} />
         </div>
       }
       <div className='body__container'>
@@ -47,7 +47,7 @@ const Body = () => {
             Saldo: {formattedValue}
           </p>
         </div>
-        <History setModalIsOpen={setModalIsOpen}/>
+        <History setModalIsOpen={setModalIsOpen} />
       </div>
     </div>
   )

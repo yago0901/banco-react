@@ -16,3 +16,4 @@ export async function fetchUsers() {
   const { data } = await axios.get('http://localhost:5000/user');
   return data;
 };
+
