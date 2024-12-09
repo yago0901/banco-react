@@ -4,6 +4,11 @@
   height: 100vh;
   overflow: hidden;
 
+  @media (max-width: 768px) {
+    height: auto;
+    overflow: auto;
+  }
+
   &::before {
     content: '';
     position: absolute;

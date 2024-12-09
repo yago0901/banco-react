@@ -2,23 +2,23 @@ import { FC, useState } from 'react';
 import { IModal } from './types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
-import { IHistory } from '../History/tipes';
+import { IHistory, IUser } from '../History/tipes';
 import './styles.scss';
 import { useMutation, useQuery } from 'react-query';
 import { fetchHistory } from '../History/util';
 import axios from 'axios';
+import { fetchUsers } from '../../pages/Login/util';
 
 const Modal: FC<IModal> = ({ setModalIsOpen }) => {
+  const [chavePix, setChavePix] = useState('');
+  const [favored, setFavored] = useState('');
+  const [ag, setAg] = useState<number>();
+  const [value, setValue] = useState<number>();
+  const [doc, setDoc] = useState<number>();
+  const [banc, setBanc] = useState('');
+  const [acc, setAcc] = useState<number>();
 
-  const [chavePix, setChavePix] = useState<string>('');
-  const [favored, setFavored] = useState<string>('');
-  const [ag, setAg] = useState<number | undefined>(undefined);
-  const [value, setValue] = useState<number | undefined>(undefined);
-  const [doc, setDoc] = useState<number | undefined>(undefined);
-  const [banc, setBanc] = useState<string>('');
-  const [acc, setAcc] = useState<number | undefined>(undefined);
-
-  const currentDate:string = new Date().toISOString();
+  const currentDate = new Date().toISOString();
 
   const formattedDate = new Intl.DateTimeFormat('pt-BR', {
     day: '2-digit',
@@ -27,24 +27,33 @@ const Modal: FC<IModal> = ({ setModalIsOpen }) => {
     hour: '2-digit',
     minute: '2-digit',
     second: '2-digit',
-    hour12: false
+    hour12: false,
   }).format(new Date(currentDate));
 
   const storedUser = JSON.parse(localStorage.getItem('user') || '{}');
-  const userId = Number(storedUser.id);
+  const userId = storedUser?.id;
 
-  const { data: history, error, isLoading } = useQuery("historyData", fetchHistory);
+  const { data: history, error: historyError, isLoading: historyLoading } = useQuery('historyData', fetchHistory);
+  const { data: users, error: usersError, isLoading: usersLoading } = useQuery('usersData', fetchUsers);
 
-  const userHistory = history.filter((item: IHistory) => item.clientID === userId);
+  const userFinder = users?.find((user: IUser) => user.id === userId);
+  const formattedValue = userFinder
+    ? new Intl.NumberFormat('pt-BR', {
+        style: 'currency',
+        currency: 'BRL',
+      }).format(userFinder.currentBalance)
+    : 'R$ 0,00';
 
-  const { mutate: registerHistory, isLoading: loginHistory, error: historyError } = useMutation(
+  const userHistory = history?.filter((item: IHistory) => item.clientID === userId) || [];
+
+  const { mutate: registerHistory, isLoading: creatingHistory } = useMutation(
     async (transition: IHistory) => {
       const response = await axios.post('http://localhost:5000/history', transition);
       return response.data;
     },
     {
       onSuccess: (data) => {
-        console.log('Usuário registrado com sucesso:', data);
+        console.log('Transação registrada com sucesso:', data);
       },
       onError: (error) => {
         if (axios.isAxiosError(error)) {
@@ -52,37 +61,35 @@ const Modal: FC<IModal> = ({ setModalIsOpen }) => {
         } else {
           console.error('Erro desconhecido:', error);
         }
-      }
+      },
     }
   );
 
-  function sendTransfer() {
-    if (doc !== undefined && ag !== undefined && acc !== undefined && value !== undefined) {
+  const sendTransfer = () => {
+    if (doc && ag && acc && value) {
       const transition: IHistory = {
         id: userHistory.length,
         clientID: userId,
         tipo: 'pix',
         chave: chavePix,
         action: 'remove',
-        doc: doc,
+        doc,
         favorecido: favored,
         agencia: ag,
         conta: acc,
         banco: banc,
         valor: value,
-        data:currentDate,
-        description: ''
+        data: currentDate,
+        description: '',
       };
       registerHistory(transition);
       setModalIsOpen(false);
     }
-  }
+  };
 
-  
-  if (isLoading) return <div>Carregando criação de usuário...</div>;
-  if (error) return <div>Erro ao carregar os dados.</div>;  
-  if (loginHistory) return <div>Carregando criação de usuário...</div>;
-  if (historyError) return <div>Erro ao carregar os dados do histórico.</div>; 
+  if (historyLoading || usersLoading) return <div>Carregando dados...</div>;
+  if (historyError || usersError) return <div>Erro ao carregar dados.</div>;
+  if (creatingHistory) return <div>Registrando transação...</div>;
 
   return (
     <div className="modal">
@@ -93,6 +100,9 @@ const Modal: FC<IModal> = ({ setModalIsOpen }) => {
         <div className="modal__container__divider">
           <h2>
             Dados da Transação
+          </h2>
+          <h2>
+            Saldo : {formattedValue}
           </h2>
           <div className="modal__container__divider__inputs">
             <div className="modal__container__divider__inputs__left">

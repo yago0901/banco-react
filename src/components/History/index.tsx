@@ -6,28 +6,13 @@ import { fetchHistory } from './util';
 import { IHistory } from './tipes';
 
 import './styles.scss'
-import { useEffect, useState } from 'react';
 
 const History = ({ setModalIsOpen }: IModal) => {
-  const [isMobile, setIsMobile] = useState<boolean>(false);
 
   const storedUser = JSON.parse(localStorage.getItem('user') || '{}');
   const userId = Number(storedUser.id);
 
   const { data: history, error, isLoading } = useQuery("historyData", fetchHistory);
-
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth <= 768);
-    };
-
-    handleResize();
-    window.addEventListener('resize', handleResize);
-
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
 
   if (isLoading) return <div>Carregando criação de usuário...</div>;
   if (error) return <div>Erro na criação de usuário...</div>;
@@ -70,32 +55,26 @@ const History = ({ setModalIsOpen }: IModal) => {
                   <FontAwesomeIcon className='history__items__item__arrow__icon' icon={faArrowDown} />}
               </div>
             </div>
-            {!isMobile &&
               <div className='history__items__item'>
                 <div className='history__items__item__title'>CPF/CNPJ</div>
                 <div>{transition.doc}</div>
               </div>
-            }
             <div className='history__items__item'>
               <div className='history__items__item__title'>Favorecido/a</div>
               <div>{transition.favorecido}</div>
             </div>
-            {!isMobile &&
               <div className='history__items__item'>
                 <div className='history__items__item__title'>Agência / Conta</div>
                 <div>{`${transition.agencia} / ${transition.conta}`}</div>
               </div>
-            }
             <div className='history__items__item'>
               <div className='history__items__item__title'>Chave Pix</div>
               <div>{transition.chave}</div>
             </div>
-            {!isMobile &&
               <div className='history__items__item'>
                 <div className='history__items__item__title'>Banco</div>
                 <div>{transition.banco}</div>
               </div>
-            }
             <div className='history__items__item'>
               <div className='history__items__item__title'>Valor</div>
               <div>{formatCurrency(transition.valor)}</div>
