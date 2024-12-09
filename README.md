@@ -1,50 +1,116 @@
-# React + TypeScript + Vite
+<h4 align="center"> 
+	Magnum Bank Front End
+</h4>
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+<p align="center">
+ <a href="#-sobre-o-projeto">Sobre</a> •
+ <a href="#-funcionalidades">Funcionalidades</a> •
+ <a href="#-layout">Layout</a> • 
+ <a href="#-como-executar-o-projeto">Como executar</a> • 
+ <a href="#-tecnologias">Tecnologias</a> • 
+ <a href="#-autor">Autor</a> • 
+ <a href="#user-content--licença">Licença</a>
+</p>
 
-Currently, two official plugins are available:
+## 💻 Sobre o projeto
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Magnum Bank Front End - é um projeto que testa as habilidades de Front-End indo desde a criação das páginas até a criação de um server fake com json serve.
 
-## Expanding the ESLint configuration
+Dificuldades ultrapassadas:
+1°= Estruturar os dados de acordo com o Json Server para suprir necessidade
+2°= Criação de design sem referência apenas com logo e nome da empresa
+3°= Utilização das melhores ferramentas disponíveis como typescript e sass
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+Mesmo com dificuldades adorei fazer este projeto e mostrar minha capacidade e o quanto melhorei nos últimos tempos.
+Tenho orgulho de falar que não obtive ajuda nenhum de terceiros para solucionar dificuldades.
 
-- Configure the top-level `parserOptions` property like this:
+---
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+## ⚙️ Funcionalidades
+
+- [x] Apresentação de dados
+
+- [x] Login e Logout
+
+- [x] Registro de novos usuários
+
+- [x] Criação de transação e disponibilidade no histórico
+
+---
+
+## 🎨 Layout
+
+O layout da aplicação está disponível no Figma:
+
+<a href="https://www.figma.com/design/1NjcDkwymo15xApaTQUnHO/Site-banco-nota-(UX)-(Community)?node-id=0-1&node-type=canvas&t=MjCQ2A4CXbsrpkXm-0">
+  <p>FIGMA obs(apenas esboço)</p>
+</a>
+
+---
+
+## 🚀 Como executar o projeto
+
+Frontend
+
+### Pré-requisitos
+
+Antes de começar, você vai precisar ter instalado em sua máquina as seguintes ferramentas:
+[Git](https://git-scm.com), [Node.js](https://nodejs.org/en/).
+Além disto é bom ter um editor para trabalhar com o código como [VSCode](https://code.visualstudio.com/)
+
+#### 🧭 Rodando a aplicação web (Frontend)
+
+```bash
+
+# Clone este repositório
+$ git clone https://github.com/yago0901/banco-react
+
+# Vá para a pasta da aplicação Front End
+$ cd banco-react
+
+# Instale as dependências
+$ npm install
+
+# Execute o json server
+$ npm run start-json-server
+
+# Execute a aplicação em modo de desenvolvimento
+$ npm run dev
+
+# A aplicação será aberta na porta:3000 - acesse http://localhost:5173/
+
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+---
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+## 🛠 Tecnologias
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+As seguintes ferramentas foram usadas na construção do projeto:
+
+#### **Desenvolvedor React** <br/> 
+([React](https://reactjs.org/) + [TypeScript](https://www.typescriptlang.org/) + [Sass](https://sass-lang.com/))
+
+- **[Axios](https://github.com/axios/axios)**
+
+- **[Json Server](https://github.com/shahedbd/jsonServer)**
+
+---
+
+## 🦸 Autor
+
+<a href="https://github.com/yago0901">
+ <img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/52417033?v=4" width="100px;" alt=""/>
+ <br />
+ <sub><b>Yago Gigeck</b></sub></a> <a href="https://yago0901.github.io/yago-desenvolvedor-site/" title="Desenvolvedor React"></a>
+ <br />
+
+---
+
+## 📝 Licença
+
+Este projeto esta sob a licença [MIT](./LICENSE).
+
+Feito por Yago 👋🏽 [Entre em contato!](https://www.linkedin.com/in/yagogigeck/)
+
+---
+
